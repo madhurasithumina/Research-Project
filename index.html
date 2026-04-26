@@ -1,536 +1,1362 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Multimodal mental health prediction and monitoring system using social media text, images, and survey-based behavioral signals." />
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mental Health Prediction | SLIIT Research</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #5B4FE9;
+    --accent: #38CFAC;
+    --warm: #F4845F;
+    --dark: #0D0E1A;
+    --card-bg: #14162A;
+    --border: rgba(255,255,255,0.07);
+    --text-muted: rgba(255,255,255,0.5);
+    --text: rgba(255,255,255,0.9);
+  }
 
-    <title>Research Website | Multimodal Mental Health Prediction</title>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="assets/styles.css" />
-  </head>
+  html { scroll-behavior: smooth; }
 
-  <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--dark);
+    color: var(--text);
+    overflow-x: hidden;
+  }
 
-    <header class="site-header" data-elevated="false">
-      <div class="container header-row">
-        <a class="brand" href="#home" aria-label="Go to home">
-          <img class="brand-logo" src="assets/img/logo.svg" alt="" aria-hidden="true" />
-          <span class="brand-text">
-            <span class="brand-title">Research Website</span>
-            <span class="brand-subtitle">Multimodal Mental Health Prediction</span>
-          </span>
-        </a>
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5vw;
+    height: 68px;
+    background: rgba(13,14,26,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
 
-        <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav">
-          <span class="nav-toggle-bars" aria-hidden="true"><span></span></span>
-        </button>
+  .nav-brand {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.25rem;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-decoration: none;
+  }
 
-        <nav id="nav" class="nav" aria-label="Primary">
-          <a href="#home">Home</a>
-          <a href="#project-scope">Project Scope</a>
-          <a href="#documents">Documents</a>
-          <a href="#tech">Technologies</a>
-          <a href="#contact">Contact</a>
-        </nav>
+  .nav-links { display: flex; gap: 0; list-style: none; }
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+    transition: color 0.2s;
+    font-weight: 500;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  .nav-dropdown { position: relative; }
+  .nav-dropdown > a::after { content: " ▾"; font-size: 0.7rem; }
+  .dropdown-menu {
+    display: none;
+    position: absolute; top: 100%; left: 0;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.5rem;
+    min-width: 200px;
+    z-index: 200;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  }
+  .dropdown-menu a {
+    display: block;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: all 0.15s;
+  }
+  .dropdown-menu a:hover { background: rgba(91,79,233,0.2); color: var(--accent); }
+  .nav-dropdown:hover .dropdown-menu { display: block; }
+
+  /* ── HERO ── */
+  #home {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+    padding: 100px 5vw 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(91,79,233,0.18) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 40% at 80% 20%, rgba(56,207,172,0.12) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 50% at 20% 80%, rgba(244,132,95,0.08) 0%, transparent 60%);
+  }
+
+  .hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.3;
+    animation: float 8s ease-in-out infinite;
+  }
+  .hero-orb-1 { width: 400px; height: 400px; background: var(--primary); top: 10%; left: -5%; animation-delay: 0s; }
+  .hero-orb-2 { width: 300px; height: 300px; background: var(--accent); bottom: 10%; right: -5%; animation-delay: 3s; }
+  .hero-orb-3 { width: 250px; height: 250px; background: var(--warm); top: 60%; left: 30%; animation-delay: 5s; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-30px) scale(1.05); }
+  }
+
+  .hero-content { position: relative; z-index: 1; max-width: 860px; }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(56,207,172,0.12);
+    border: 1px solid rgba(56,207,172,0.3);
+    border-radius: 50px;
+    padding: 0.4rem 1.2rem;
+    font-size: 0.8rem;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .hero-badge::before { content: "●"; font-size: 0.6rem; animation: pulse-dot 2s ease-in-out infinite; }
+  @keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.4rem, 6vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    color: var(--text-muted);
+    max-width: 620px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .gradient-text {
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--primary), #7B6CF5);
+    color: #fff;
+    border: none;
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 30px rgba(91,79,233,0.4);
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 50px rgba(91,79,233,0.6); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-stats {
+    display: flex; justify-content: center; gap: 3rem;
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--border);
+  }
+  .stat-item { text-align: center; }
+  .stat-num { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--accent); }
+  .stat-label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.25rem; }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 100px 5vw;
+    position: relative;
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    line-height: 1.15;
+  }
+
+  .section-desc {
+    color: var(--text-muted);
+    max-width: 640px;
+    line-height: 1.75;
+    font-size: 1.05rem;
+  }
+
+  .section-header { margin-bottom: 3.5rem; }
+
+  /* ── DOMAIN (PROJECT SCOPE) ── */
+  #project-scope { background: linear-gradient(180deg, var(--dark) 0%, #101224 100%); }
+
+  .scope-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .scope-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: border-color 0.3s, transform 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .scope-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s;
+  }
+  .scope-card:hover::before { transform: scaleX(1); }
+  .scope-card:hover { border-color: rgba(91,79,233,0.4); transform: translateY(-4px); }
+
+  .scope-icon {
+    width: 48px; height: 48px;
+    background: linear-gradient(135deg, rgba(91,79,233,0.2), rgba(56,207,172,0.2));
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .scope-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: #fff;
+  }
+  .scope-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; }
+
+  /* Literature table */
+  .lit-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+    background: var(--card-bg);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .lit-table th {
+    background: rgba(91,79,233,0.15);
+    padding: 1rem 1.5rem;
+    text-align: left;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    border-bottom: 1px solid var(--border);
+  }
+  .lit-table td {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .lit-table tr:last-child td { border-bottom: none; }
+  .lit-table tr:hover td { background: rgba(255,255,255,0.02); color: var(--text); }
+
+  /* Research gap */
+  .gap-list { list-style: none; margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+  .gap-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    transition: border-color 0.3s;
+  }
+  .gap-item:hover { border-color: rgba(244,132,95,0.4); }
+  .gap-num {
+    width: 32px; height: 32px; min-width: 32px;
+    background: linear-gradient(135deg, var(--warm), #E86F3A);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: #fff;
+    margin-top: 2px;
+  }
+  .gap-item h4 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 0.35rem; }
+  .gap-item p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+
+  /* Research problem */
+  .problem-box {
+    background: linear-gradient(135deg, rgba(91,79,233,0.1), rgba(56,207,172,0.08));
+    border: 1px solid rgba(91,79,233,0.3);
+    border-radius: 20px;
+    padding: 2.5rem;
+    margin-top: 2rem;
+  }
+  .problem-box h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+  .problem-box p { color: var(--text-muted); line-height: 1.8; font-size: 0.95rem; }
+
+  /* Objectives */
+  .objectives-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+  .obj-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.75rem;
+    transition: all 0.3s;
+    position: relative;
+  }
+  .obj-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+  .obj-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    opacity: 0.3;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .obj-card h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 0.6rem; }
+  .obj-card p { color: var(--text-muted); font-size: 0.875rem; line-height: 1.65; }
+
+  /* Methodology */
+  .method-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  @media(max-width:768px){ .method-grid { grid-template-columns: 1fr; } }
+
+  .method-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+  }
+  .method-timeline::before {
+    content: '';
+    position: absolute;
+    left: 20px; top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--primary), var(--accent));
+    border-radius: 2px;
+  }
+  .method-step {
+    display: flex;
+    gap: 1.25rem;
+    padding: 0 0 2rem 0;
+    position: relative;
+  }
+  .step-dot {
+    width: 40px; height: 40px; min-width: 40px;
+    background: var(--card-bg);
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    z-index: 1;
+    transition: background 0.3s;
+  }
+  .method-step:hover .step-dot { background: var(--primary); }
+  .step-content h4 { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 0.35rem; }
+  .step-content p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.65; }
+
+  /* Arch diagram */
+  .arch-box {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .arch-box h4 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: var(--accent); margin-bottom: 0.5rem; }
+  .arch-layer {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    position: relative;
+  }
+  .arch-layer span {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  /* Technologies */
+  .tech-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .tech-pill {
+    display: flex; align-items: center; gap: 0.6rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    padding: 0.6rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text);
+    transition: all 0.25s;
+  }
+  .tech-pill:hover { border-color: var(--primary); color: #fff; box-shadow: 0 0 20px rgba(91,79,233,0.2); }
+  .tech-pill .t-icon { font-size: 1.1rem; }
+
+  /* ── MILESTONES ── */
+  #milestones { background: #101224; }
+
+  .milestones-track {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+    margin-top: 3rem;
+  }
+  .milestones-track::before {
+    content: '';
+    position: absolute;
+    left: 140px; top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--primary) 0%, var(--accent) 50%, var(--warm) 100%);
+  }
+
+  .milestone {
+    display: flex;
+    gap: 2rem;
+    padding-bottom: 2.5rem;
+    position: relative;
+    align-items: flex-start;
+  }
+  .ms-date {
+    width: 120px; min-width: 120px;
+    text-align: right;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    padding-top: 0.4rem;
+  }
+  .ms-dot {
+    width: 20px; height: 20px; min-width: 20px;
+    background: var(--primary);
+    border-radius: 50%;
+    border: 3px solid var(--dark);
+    margin-top: 0.25rem;
+    box-shadow: 0 0 0 3px rgba(91,79,233,0.3);
+    z-index: 1;
+    transition: transform 0.2s;
+  }
+  .milestone:hover .ms-dot { transform: scale(1.3); }
+  .ms-content {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.25rem 1.5rem;
+    flex: 1;
+    transition: border-color 0.3s;
+  }
+  .milestone:hover .ms-content { border-color: rgba(91,79,233,0.35); }
+  .ms-content h3 { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 0.35rem; }
+  .ms-content p { color: var(--text-muted); font-size: 0.875rem; line-height: 1.6; margin-bottom: 0.75rem; }
+  .ms-badge {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: rgba(56,207,172,0.12);
+    border: 1px solid rgba(56,207,172,0.25);
+    border-radius: 50px;
+    padding: 0.2rem 0.75rem;
+    font-size: 0.75rem;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* ── DOWNLOADS ── */
+  .downloads-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+  .doc-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex; flex-direction: column; gap: 0.75rem;
+    transition: all 0.3s;
+  }
+  .doc-card:hover { border-color: rgba(91,79,233,0.4); transform: translateY(-3px); }
+  .doc-header { display: flex; align-items: flex-start; gap: 1rem; }
+  .doc-icon {
+    width: 44px; height: 44px; min-width: 44px;
+    background: linear-gradient(135deg, rgba(91,79,233,0.2), rgba(56,207,172,0.15));
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+  }
+  .doc-info h4 { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 0.2rem; }
+  .doc-info span { font-size: 0.8rem; color: var(--text-muted); }
+  .doc-links { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .doc-link {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: rgba(91,79,233,0.12);
+    border: 1px solid rgba(91,79,233,0.25);
+    border-radius: 8px;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.8rem;
+    color: #a8a0ff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .doc-link:hover { background: rgba(91,79,233,0.25); border-color: var(--primary); color: #fff; }
+
+  /* ── ABOUT ── */
+  #about { background: var(--dark); }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+  .team-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .team-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(91,79,233,0.06), rgba(56,207,172,0.04));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .team-card:hover { border-color: rgba(56,207,172,0.3); transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+  .team-card:hover::after { opacity: 1; }
+  .team-avatar {
+    width: 80px; height: 80px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    border-radius: 50%;
+    margin: 0 auto 1.25rem;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+  }
+  .supervisor-avatar { background: linear-gradient(135deg, var(--warm), #D4564A); }
+  .team-card h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem; position: relative; z-index: 1; }
+  .team-card .team-id { font-size: 0.8rem; color: var(--accent); font-weight: 600; margin-bottom: 0.25rem; position: relative; z-index: 1; }
+  .team-card .team-role { font-size: 0.8rem; color: var(--text-muted); position: relative; z-index: 1; }
+
+  /* ── CONTACT ── */
+  #contact { background: #101224; }
+
+  .contact-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 3rem;
+    align-items: start;
+  }
+  @media(max-width:768px){ .contact-wrap { grid-template-columns: 1fr; gap: 2rem; } }
+
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group label { font-size: 0.8rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+  .form-control {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.85rem 1rem;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
+    outline: none;
+    resize: vertical;
+  }
+  .form-control:focus { border-color: var(--primary); }
+  .form-control::placeholder { color: var(--text-muted); }
+
+  .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+  .contact-item {
+    display: flex; gap: 1rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.25rem;
+  }
+  .c-icon { font-size: 1.4rem; }
+  .c-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.2rem; }
+  .c-val { font-size: 0.9rem; color: #fff; font-weight: 500; }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 3rem 5vw;
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+  footer span { color: var(--accent); }
+
+  /* Mobile nav */
+  .hamburger { display: none; cursor: pointer; font-size: 1.5rem; color: var(--text); }
+  @media(max-width:900px){
+    .nav-links { display: none; }
+    .hamburger { display: block; }
+    .milestones-track::before { left: 20px; }
+    .ms-date { display: none; }
+    .milestone { gap: 1rem; }
+  }
+
+  /* Scroll animations */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-brand">MindSense AI</a>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li class="nav-dropdown">
+      <a href="#project-scope">Project Scope</a>
+      <div class="dropdown-menu">
+        <a href="#literature">Literature Survey</a>
+        <a href="#research_gap">Research Gap</a>
+        <a href="#research_problem">Research Problem</a>
+        <a href="#research_objectives">Research Objectives</a>
+        <a href="#methodology">Methodology</a>
+        <a href="#tech_used">Technologies</a>
       </div>
-    </header>
-
-    <main id="main">
-      <section id="home" class="hero">
-        <div class="container hero-grid">
-          <div class="hero-copy">
-            <p class="eyebrow">AI • NLP • Computer Vision • Time-Series</p>
-            <h1>Early, continuous mental health risk monitoring using text, images, and behavioral signals</h1>
-            <p class="lead">
-              We propose an intelligent, multimodal prediction system that combines social media language, facial-expression cues, and survey-based
-              behavioral indicators to support long-term tracking and personalized intervention.
-            </p>
-
-            <div class="hero-actions">
-              <a class="btn primary" href="#project-scope">Learn more</a>
-              <a class="btn" href="#documents">View documents</a>
-            </div>
-
-            <dl class="hero-metrics" aria-label="Project highlights">
-              <div class="metric">
-                <dt>Inputs</dt>
-                <dd>Text • Images • Surveys</dd>
-              </div>
-              <div class="metric">
-                <dt>Models</dt>
-                <dd>Transformers • CNN • LSTM/GRU</dd>
-              </div>
-              <div class="metric">
-                <dt>Outputs</dt>
-                <dd>Risk level + trends + support</dd>
-              </div>
-            </dl>
-          </div>
-
-          <div class="hero-visual" aria-hidden="true">
-            <img class="hero-img" src="assets/img/hero-illustration.svg" alt="" />
-            <p class="caption">Conceptual overview of multimodal signals and monitoring.</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="project-scope" class="section alt">
-        <div class="container">
-          <div class="section-head">
-            <h2>Project Scope</h2>
-            <p>
-              This section summarizes the motivation, gaps, problem framing, and the proposed system design for a multimodal mental health prediction
-              and monitoring platform.
-            </p>
-          </div>
-
-          <div class="grid three">
-            <a class="card card-link" href="#literature">
-              <h3>Literature Survey</h3>
-              <p>Evidence that language, vision, and trends carry mental health signals.</p>
-            </a>
-            <a class="card card-link" href="#gap">
-              <h3>Research Gap</h3>
-              <p>Limitations in long-term analysis, fusion, personalization, and ethics.</p>
-            </a>
-            <a class="card card-link" href="#problem">
-              <h3>Problem & Solution</h3>
-              <p>Unified pipeline with risk classification, monitoring, and support.</p>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section id="literature" class="section">
-        <div class="container">
-          <div class="section-head">
-            <h2>📚 Literature Survey</h2>
-            <p>
-              Mental health conditions such as depression, anxiety, and chronic stress affect millions globally. Traditional diagnosis often depends on
-              clinical interviews and self-reporting, which can be delayed and inaccessible. Recent literature highlights that social media provides
-              real-time, naturally occurring signals of emotional and psychological state.
-            </p>
-          </div>
-
-          <div class="grid two">
-            <article class="card">
-              <h3>Social media as a signal source</h3>
-              <ul>
-                <li>Textual patterns can reveal affect, cognition, and distress signals.</li>
-                <li>Language features (sentiment, pronouns, emotional tone) correlate with depression and anxiety.</li>
-                <li>Longer-form platforms can capture richer emotional narratives.</li>
-              </ul>
-            </article>
-
-            <article class="card">
-              <h3>Deep learning improves prediction</h3>
-              <ul>
-                <li>Transformer models (e.g., BERT-like) capture context in informal language better than TF‑IDF/Word2Vec baselines.</li>
-                <li>Computer vision models can detect facial-expression patterns indicating emotional state.</li>
-                <li>Sequence models (LSTM/GRU) support trend analysis over time (sleep, stress, mood trajectories).</li>
-              </ul>
-            </article>
-          </div>
-
-          <div class="grid two">
-            <figure class="figure card">
-              <div class="figure-top">
-                <h3>Data sources in our system</h3>
-                <p class="muted">Three complementary streams to reduce blind spots.</p>
-              </div>
-              <img class="figure-img" src="assets/img/data-sources.svg" alt="Diagram of inputs: social media text, images, and survey-based behavioral data" />
-              <figcaption class="caption">Inputs are integrated for richer, more robust monitoring.</figcaption>
-            </figure>
-
-            <figure class="figure card">
-              <div class="figure-top">
-                <h3>Signal coverage (illustrative)</h3>
-                <p class="muted">Why multimodal can outperform single-modality approaches.</p>
-              </div>
-              <img class="figure-img" src="assets/img/multimodal-donut.svg" alt="Donut chart showing complementary coverage of text, image, and survey signals" />
-              <figcaption class="caption">Conceptual view (not measured results).</figcaption>
-            </figure>
-          </div>
-        </div>
-      </section>
-
-      <section id="gap" class="section alt">
-        <div class="container">
-          <div class="section-head">
-            <h2>⚠️ Research Gap</h2>
-            <p>Despite strong progress, current systems often struggle with real-world continuity, integration, and personalization.</p>
-          </div>
-
-          <div class="grid three">
-            <article class="card">
-              <h3>Long-term tracking is limited</h3>
-              <p>Many studies focus on one-time detection instead of monitoring changes over time.</p>
-            </article>
-            <article class="card">
-              <h3>Incomplete data integration</h3>
-              <p>Most approaches rely on text <em>or</em> images <em>or</em> surveys, not a unified pipeline.</p>
-            </article>
-            <article class="card">
-              <h3>Platform constraints</h3>
-              <p>Research frequently centers on Twitter/Reddit, underutilizing richer long-form content on platforms like Facebook.</p>
-            </article>
-            <article class="card">
-              <h3>Fusion conflicts</h3>
-              <p>Multimodal systems can mis-handle mismatched signals (e.g., happy image with a distressed caption).</p>
-            </article>
-            <article class="card">
-              <h3>Little personalized intervention</h3>
-              <p>Many works stop at prediction and do not deliver real-time support or recommendations.</p>
-            </article>
-            <article class="card">
-              <h3>Ethics and privacy</h3>
-              <p>Consent, anonymization, and responsible AI practices are not consistently addressed.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="problem" class="section">
-        <div class="container">
-          <div class="section-head">
-            <h2>❗ Research Problem & Proposed Solution</h2>
-            <p>
-              Mental health disorders are increasing worldwide, but early detection and continuous intervention are limited by delayed clinical
-              diagnosis and fragmented understanding of behavior across data sources.
-            </p>
-          </div>
-
-          <div class="grid two">
-            <article class="card">
-              <h3>🔴 Research Problem</h3>
-              <ul>
-                <li>Diagnosis is often late and access is uneven.</li>
-                <li>Static, single-source models miss context and temporal patterns.</li>
-                <li>Social signals alone may be incomplete; surveys alone lack behavioral context.</li>
-              </ul>
-            </article>
-
-            <article class="card accent">
-              <h3>🟢 Proposed Solution</h3>
-              <ul>
-                <li><strong>Integrate</strong> social media text, images (facial cues), and survey data.</li>
-                <li><strong>Model</strong> language with transformers; trends with LSTM/GRU; images with CNN backbones.</li>
-                <li><strong>Fuse</strong> modalities into a single prediction with confidence-aware reasoning.</li>
-                <li><strong>Deliver</strong> risk classification (low / moderate / high), trend monitoring, and personalized support.</li>
-              </ul>
-            </article>
-          </div>
-
-          <figure class="figure card">
-            <div class="figure-top">
-              <h3>System architecture (conceptual)</h3>
-              <p class="muted">End-to-end pipeline from data to support and monitoring.</p>
-            </div>
-            <img class="figure-img" src="assets/img/methodology-pipeline.svg" alt="Pipeline diagram: inputs to preprocessing to models to fusion and risk classification, with outputs to dashboard, chatbot, and digital twin" />
-            <figcaption class="caption">Conceptual architecture; implementation details can vary.</figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <section id="objectives" class="section alt">
-        <div class="container">
-          <div class="section-head">
-            <h2>🎯 Research Objectives</h2>
-            <p class="muted">Main objective: build an intelligent, multimodal prediction and monitoring system enabling early detection and personalized intervention.</p>
-          </div>
-
-          <div class="grid two">
-            <article class="card">
-              <h3>Specific objectives</h3>
-              <ul class="checklist">
-                <li>Text-based NLP analysis for emotional patterns</li>
-                <li>Time-series prediction of changes over time (LSTM/GRU)</li>
-                <li>Multimodal text+image analysis for better robustness</li>
-                <li>Context-aware modeling for informal language</li>
-                <li>Risk classification (low / moderate / high)</li>
-                <li>CBT-inspired chatbot support</li>
-                <li>Dashboards + digital twin monitoring</li>
-                <li>Ethical implementation: privacy, consent, responsible AI</li>
-              </ul>
-            </article>
-
-            <article class="card">
-              <h3>What we measure</h3>
-              <p class="muted">Evaluation focuses on predictive quality and usefulness for monitoring.</p>
-              <div class="pill-row" role="list" aria-label="Evaluation metrics">
-                <span class="pill" role="listitem">Accuracy</span>
-                <span class="pill" role="listitem">Precision</span>
-                <span class="pill" role="listitem">Recall</span>
-                <span class="pill" role="listitem">F1-score</span>
-                <span class="pill" role="listitem">Usability</span>
-                <span class="pill" role="listitem">Privacy validation</span>
-              </div>
-              <div class="note">
-                <strong>Note:</strong> Charts shown are conceptual unless backed by collected results.
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="methodology" class="section">
-        <div class="container">
-          <div class="section-head">
-            <h2>⚙️ Methodology</h2>
-            <p>A structured pipeline from data collection to deployment and validation.</p>
-          </div>
-
-          <div class="timeline card">
-            <ol class="timeline-list">
-              <li>
-                <h3>1. Data collection</h3>
-                <p>Facebook posts/captions, images, and survey signals (mood, sleep, stress, behavior).</p>
-              </li>
-              <li>
-                <h3>2. Preprocessing</h3>
-                <p>Text cleaning, face detection/normalization, labeling, anonymization.</p>
-              </li>
-              <li>
-                <h3>3. Feature extraction</h3>
-                <p>Sentiment and embeddings, facial emotion features, behavioral indicators.</p>
-              </li>
-              <li>
-                <h3>4. Model development</h3>
-                <p>Transformers for text, CNN for images, LSTM/GRU for sequences, fusion for combined inference.</p>
-              </li>
-              <li>
-                <h3>5. Prediction & classification</h3>
-                <p>Emotional state + risk level (low/moderate/high) with trend monitoring.</p>
-              </li>
-              <li>
-                <h3>6–8. System + evaluation + deployment</h3>
-                <p>Dashboard, chatbot, digital twin; evaluate metrics; functional/usability/privacy testing.</p>
-              </li>
-            </ol>
-          </div>
-
-          <div class="grid two">
-            <figure class="figure card">
-              <div class="figure-top">
-                <h3>Long-term monitoring concept</h3>
-                <p class="muted">From events to trends and intervention triggers.</p>
-              </div>
-              <img class="figure-img" src="assets/img/longitudinal-trends.svg" alt="Line chart illustration showing emotional trend over time with intervention points" />
-              <figcaption class="caption">Illustration of trend tracking and support prompts.</figcaption>
-            </figure>
-
-            <figure class="figure card">
-              <div class="figure-top">
-                <h3>Privacy by design (concept)</h3>
-                <p class="muted">Consent, anonymization, and safe model usage.</p>
-              </div>
-              <img class="figure-img" src="assets/img/privacy-shield.svg" alt="Shield diagram representing consent, anonymization, and responsible AI" />
-              <figcaption class="caption">Ethical and privacy safeguards are first-class requirements.</figcaption>
-            </figure>
-          </div>
-        </div>
-      </section>
-
-      <section id="documents" class="section">
-        <div class="container">
-          <div class="section-head">
-            <h2>📄 Documents</h2>
-            <p>Project files available in this repository/workspace (PDFs and slides).</p>
-          </div>
-
-          <div class="grid two">
-            <article class="card">
-              <h3>Website instructions</h3>
-              <ul>
-                <li><a href="Website.pdf">Website.pdf</a></li>
-              </ul>
-            </article>
-
-            <article class="card">
-              <h3>Topic assessment</h3>
-              <ul>
-                <li><a href="topic%20assessment/topic%20assessment.pdf">Topic assessment (PDF)</a></li>
-              </ul>
-            </article>
-          </div>
-
-          <div class="grid two">
-            <article class="card">
-              <h3>Proposals</h3>
-              <ul>
-                <li><a href="proposal/IT22339324%20-%20WIJERATHNE%20M%20A%20S%20M.pdf">IT22339324 - WIJERATHNE M A S M</a></li>
-                <li><a href="proposal/IT22899460_SITHUMINA%20H%20L%20M.pdf">IT22899460_SITHUMINA H L M</a></li>
-                <li><a href="proposal/IT22911612_ATHUKORALA%20A%20J.pdf">IT22911612_ATHUKORALA A J</a></li>
-                <li><a href="proposal/IT22926012_Abeyrathna%20M%20G%20W%20N.pdf">IT22926012_Abeyrathna M G W N</a></li>
-              </ul>
-            </article>
-
-            <article class="card">
-              <h3>Presentations</h3>
-              <ul>
-                <li><a href="presentation/pp1.pptx">pp1.pptx</a></li>
-                <li><a href="presentation/pp2.pptx">pp2.pptx</a></li>
-                <li><a href="presentation/praposal.pptx">praposal.pptx</a></li>
-              </ul>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="tech" class="section alt">
-        <div class="container">
-          <div class="section-head">
-            <h2>💻 Technologies Used</h2>
-            <p>Tooling choices to support NLP, vision, time-series modeling, and deployment.</p>
-          </div>
-
-          <div class="icon-grid" aria-label="Technology icons">
-            <div class="icon-card"><img src="assets/img/tech/python.svg" alt="Python" /><span>Python</span></div>
-            <div class="icon-card"><img src="assets/img/tech/pytorch.svg" alt="PyTorch" /><span>PyTorch</span></div>
-            <div class="icon-card"><img src="assets/img/tech/tensorflow.svg" alt="TensorFlow" /><span>TensorFlow</span></div>
-            <div class="icon-card"><img src="assets/img/tech/opencv.svg" alt="OpenCV" /><span>OpenCV</span></div>
-            <div class="icon-card"><img src="assets/img/tech/huggingface.svg" alt="Hugging Face" /><span>Transformers</span></div>
-            <div class="icon-card"><img src="assets/img/tech/flask.svg" alt="Flask" /><span>Flask</span></div>
-            <div class="icon-card"><img src="assets/img/tech/fastapi.svg" alt="FastAPI" /><span>FastAPI</span></div>
-            <div class="icon-card"><img src="assets/img/tech/mongodb.svg" alt="MongoDB" /><span>MongoDB</span></div>
-          </div>
-
-          <div class="grid three">
-            <article class="card">
-              <h3>Programming & frameworks</h3>
-              <ul>
-                <li>Python</li>
-                <li>TensorFlow / PyTorch</li>
-                <li>Scikit-learn</li>
-              </ul>
-            </article>
-            <article class="card">
-              <h3>NLP & AI models</h3>
-              <ul>
-                <li>BERT / RoBERTa-style transformers</li>
-                <li>LSTM / GRU</li>
-                <li>CNN backbones (ResNet/EfficientNet family)</li>
-              </ul>
-            </article>
-            <article class="card">
-              <h3>Libraries & tools</h3>
-              <ul>
-                <li>Hugging Face Transformers</li>
-                <li>OpenCV</li>
-                <li>NLTK / SpaCy</li>
-                <li>Pandas / NumPy</li>
-              </ul>
-            </article>
-            <article class="card">
-              <h3>Visualization</h3>
-              <ul>
-                <li>Matplotlib / Seaborn</li>
-                <li>Dashboard (React / Streamlit)</li>
-              </ul>
-            </article>
-            <article class="card">
-              <h3>Deployment</h3>
-              <ul>
-                <li>Flask / FastAPI</li>
-                <li>Cloud platforms (optional)</li>
-              </ul>
-            </article>
-            <article class="card">
-              <h3>Data + integration</h3>
-              <ul>
-                <li>API integration</li>
-                <li>Database (MySQL / MongoDB)</li>
-              </ul>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="summary" class="section">
-        <div class="container">
-          <div class="section-head">
-            <h2>✅ Final Summary</h2>
-            <p>
-              This research unifies four key components — text analysis, image analysis, time-series prediction, and behavioral signals — into a single
-              monitoring system designed for practical, real-time support.
-            </p>
-          </div>
-
-          <div class="grid two">
-            <article class="card accent">
-              <h3>What the system delivers</h3>
-              <ul>
-                <li>Real-time risk estimation with transparent inputs</li>
-                <li>Long-term emotional trend analysis</li>
-                <li>Risk level classification: low, moderate, high</li>
-                <li>Personalized support via a CBT-inspired chatbot</li>
-                <li>Dashboards + digital twin for monitoring</li>
-              </ul>
-            </article>
-
-            <article class="card">
-              <h3>Next steps (practical)</h3>
-              <ol>
-                <li>Finalize data access, consent, and anonymization workflow</li>
-                <li>Define labels and evaluation protocol</li>
-                <li>Build baseline models then iterate to multimodal fusion</li>
-                <li>Integrate dashboard + chatbot + monitoring view</li>
-              </ol>
-            </article>
-          </div>
-
-          <div class="footer-cta">
-            <a class="btn primary" href="#home">Back to top</a>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" class="section alt">
-        <div class="container">
-          <div class="section-head">
-            <h2>📬 Contact</h2>
-            <p>Use this form to send feedback or collaboration requests.</p>
-          </div>
-
-          <div class="grid two">
-            <article class="card">
-              <h3>Email</h3>
-              <p class="muted">Update the email address if needed.</p>
-              <p><a class="btn" href="mailto:your-team-email@example.com">your-team-email@example.com</a></p>
-              <div class="note"><strong>Privacy:</strong> avoid sending sensitive personal health data via email.</div>
-            </article>
-
-            <form class="card form" action="mailto:your-team-email@example.com" method="post" enctype="text/plain">
-              <h3>Message</h3>
-              <label class="field">
-                <span>Name</span>
-                <input class="input" name="name" autocomplete="name" required />
-              </label>
-              <label class="field">
-                <span>Email</span>
-                <input class="input" type="email" name="email" autocomplete="email" required />
-              </label>
-              <label class="field">
-                <span>Message</span>
-                <textarea class="input textarea" name="message" rows="5" required></textarea>
-              </label>
-              <button class="btn primary" type="submit">Send</button>
-            </form>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <div class="container footer-row">
-        <p class="muted">© <span id="year"></span> Research Project • Multimodal Mental Health Prediction</p>
-        <p class="muted">Built as a static site (GitHub Pages compatible).</p>
+    </li>
+    <li><a href="#milestones">Milestones</a></li>
+    <li class="nav-dropdown">
+      <a href="#downloads">Downloads</a>
+      <div class="dropdown-menu">
+        <a href="#downloads">Documents</a>
+        <a href="#presentations">Presentations</a>
       </div>
-    </footer>
+    </li>
+    <li><a href="#about">About Us</a></li>
+    <li><a href="#contact">Contact Us</a></li>
+  </ul>
+  <span class="hamburger">☰</span>
+</nav>
 
-    <script src="assets/script.js" defer></script>
-  </body>
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-orb hero-orb-3"></div>
+  <div class="hero-content">
+    <div class="hero-badge">SLIIT · Research Project · 25-26J-173</div>
+    <h1>Mental Health Prediction<br>Using <span class="gradient-text">Social Media</span> &<br>Sentiment Analysis</h1>
+    <p class="hero-sub">An intelligent system that predicts mental health states from social media behavior — combining CBT-based chatbot therapy, digital twin modelling, and real-time emotional dashboards.</p>
+    <div class="hero-actions">
+      <a href="#project-scope" class="btn-primary">Explore Research →</a>
+      <a href="#downloads" class="btn-outline">📄 Downloads</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">4</div>
+        <div class="stat-label">Team Members</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Core Components</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">AI</div>
+        <div class="stat-label">Powered</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">BERT</div>
+        <div class="stat-label">NLP Model</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT SCOPE / DOMAIN -->
+<section id="project-scope">
+  <div class="section-header reveal">
+    <p class="section-label">Project Scope</p>
+    <h2 class="section-title">Domain Overview</h2>
+    <p class="section-desc">Mental health disorders affect 1 in 8 people globally. This research builds a proactive, AI-powered system that closes the gap between data-driven prediction and real-world intervention.</p>
+  </div>
+
+  <div class="scope-grid">
+    <div class="scope-card reveal">
+      <div class="scope-icon">🧠</div>
+      <h3>CBT Chatbot</h3>
+      <p>A Cognitive Behavioral Therapy-based conversational companion available 24/7. Built with Rasa, it assesses emotional state, guides breathing exercises, and provides reflection prompts tailored to each user.</p>
+    </div>
+    <div class="scope-card reveal">
+      <div class="scope-icon">👤</div>
+      <h3>Digital Twin</h3>
+      <p>A real-time dynamic model of the user's emotional state, classifying them as Stable, Monitoring, At Risk, or Action Required. Delivers personalized recommendations via deterministic and collaborative filtering.</p>
+    </div>
+    <div class="scope-card reveal">
+      <div class="scope-icon">📊</div>
+      <h3>Mood Dashboard</h3>
+      <p>Visual summaries of emotional trends — daily, weekly, and monthly — with downloadable PDF reports. Enables users and clinicians to track progress and identify patterns over time.</p>
+    </div>
+    <div class="scope-card reveal">
+      <div class="scope-icon">🔍</div>
+      <h3>Sentiment Analysis</h3>
+      <p>Fine-tuned BERT transformer models classify emotional states from text, while EfficientNet-B0 CNN models analyze facial expressions from images, providing multimodal emotional intelligence.</p>
+    </div>
+    <div class="scope-card reveal">
+      <div class="scope-icon">🔐</div>
+      <h3>Privacy-First Design</h3>
+      <p>End-to-end encryption, multi-factor authentication, role-based access control, and user-controlled consent management ensure sensitive mental health data is always protected.</p>
+    </div>
+    <div class="scope-card reveal">
+      <div class="scope-icon">📱</div>
+      <h3>Cross-Platform App</h3>
+      <p>Built in Flutter (Dart) for both Android and iOS, backed by FastAPI on Google Cloud. Firebase handles authentication and push notifications for timely interventions.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LITERATURE SURVEY -->
+<section id="literature" style="background:#101224;">
+  <div class="section-header reveal">
+    <p class="section-label">Domain · Literature Survey</p>
+    <h2 class="section-title">What Research Tells Us</h2>
+    <p class="section-desc">A growing body of evidence demonstrates that social media data can reliably predict mental health conditions — often months before clinical diagnosis.</p>
+  </div>
+
+  <table class="lit-table reveal">
+    <thead>
+      <tr>
+        <th>Condition</th>
+        <th>Platform / Data</th>
+        <th>Method</th>
+        <th>Key Finding</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Depression & PTSD</td>
+        <td>Twitter</td>
+        <td>ML — linguistic & temporal signals</td>
+        <td>Predicted months before clinical diagnosis (Reece et al., 2016)</td>
+      </tr>
+      <tr>
+        <td>Depression</td>
+        <td>Twitter</td>
+        <td>Social media models</td>
+        <td>~70% accuracy before official diagnosis (UW / Microsoft Research)</td>
+      </tr>
+      <tr>
+        <td>Suicidal Ideation</td>
+        <td>Social posts</td>
+        <td>Ensemble LSTM–Attention–CNN</td>
+        <td>90.3% accuracy, 92.6% F1 score (Renjith et al., 2021)</td>
+      </tr>
+      <tr>
+        <td>Anxiety</td>
+        <td>Instagram, Facebook</td>
+        <td>Sentiment analysis + behavioral markers</td>
+        <td>Elevated anxiety symptoms correlated with platform use frequency</td>
+      </tr>
+      <tr>
+        <td>Anorexia / BDD</td>
+        <td>Selfies + posts</td>
+        <td>Body image content filtering</td>
+        <td>Exposure to idealized content identified as a key trigger</td>
+      </tr>
+      <tr>
+        <td>Bipolar / OCD-like</td>
+        <td>Social media content</td>
+        <td>Exploratory digital analysis</td>
+        <td>Compulsive use patterns correlated with elevated bipolar-like behavior</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- RESEARCH GAP -->
+<section id="research_gap">
+  <div class="section-header reveal">
+    <p class="section-label">Domain · Research Gap</p>
+    <h2 class="section-title">Where Existing Solutions Fall Short</h2>
+    <p class="section-desc">While individual components — chatbots, digital twins, dashboards — exist in isolation, no integrated system combines all three into one cohesive, privacy-conscious platform.</p>
+  </div>
+
+  <ul class="gap-list">
+    <li class="gap-item reveal">
+      <div class="gap-num">1</div>
+      <div>
+        <h4>Siloed Architecture</h4>
+        <p>Existing systems use a siloed approach — CBT chatbots, digital twins, and dashboards are developed independently with no real-time data exchange between components. This fragmentation severely limits personalization and adaptive intervention.</p>
+      </div>
+    </li>
+    <li class="gap-item reveal">
+      <div class="gap-num">2</div>
+      <div>
+        <h4>Fragmented User Experience</h4>
+        <p>Users must navigate multiple applications to access mental health support, leading to disengagement. Each context switch breaks therapeutic continuity and undermines trust in the system.</p>
+      </div>
+    </li>
+    <li class="gap-item reveal">
+      <div class="gap-num">3</div>
+      <div>
+        <h4>Reactive Rather Than Proactive</h4>
+        <p>Current approaches rely on self-disclosure and periodic clinical appointments. There is no mechanism to continuously monitor emotional trajectory and intervene before a crisis occurs.</p>
+      </div>
+    </li>
+    <li class="gap-item reveal">
+      <div class="gap-num">4</div>
+      <div>
+        <h4>Inadequate Privacy & Security</h4>
+        <p>Sensitive mental health data flows across multiple platforms, each with limited security boundaries. Comprehensive end-to-end encryption, MFA, and role-based access control are largely absent in current solutions.</p>
+      </div>
+    </li>
+    <li class="gap-item reveal">
+      <div class="gap-num">5</div>
+      <div>
+        <h4>Limited Multimodal Intelligence</h4>
+        <p>Most studies rely on text alone. Combining facial-expression analysis (images) with natural language sentiment analysis provides a far richer and more accurate picture of mental state that remains underexplored.</p>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<!-- RESEARCH PROBLEM -->
+<section id="research_problem" style="background:#101224;">
+  <div class="section-header reveal">
+    <p class="section-label">Domain · Research Problem & Solution</p>
+    <h2 class="section-title">The Problem We're Solving</h2>
+  </div>
+
+  <div class="problem-box reveal">
+    <h3>"How can social media activity and sentiment analysis be used to proactively predict mental health conditions and deliver personalized, real-time intervention?"</h3>
+    <p style="margin-top:1rem;">Mental health assessment today depends almost entirely on self-reporting and infrequent clinical sessions. There is no longitudinal, continuous system that tracks behavioral and emotional signals from daily digital activity — social media text, images, and interaction patterns — and translates them into timely, personalized guidance. The result is delayed diagnosis, missed early warning signs, and poor access to evidence-based support.</p>
+  </div>
+
+  <div class="scope-grid" style="margin-top:2rem;">
+    <div class="scope-card reveal">
+      <div class="scope-icon">💡</div>
+      <h3>Proposed Solution</h3>
+      <p>An integrated mobile application that analyzes user-permitted social media text and images, predicts mental health risks, and delivers proactive support through a unified dashboard, digital twin avatar, and CBT-based chatbot — all within a single, secure platform.</p>
+    </div>
+    <div class="scope-card reveal">
+      <div class="scope-icon">🎯</div>
+      <h3>Target Outcomes</h3>
+      <p>Early detection of anxiety, depression, and stress markers. Personalized music therapy, mindfulness recommendations, and breathing exercises. Downloadable mental health progress reports. Real-time push notifications for at-risk users.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH OBJECTIVES -->
+<section id="research_objectives">
+  <div class="section-header reveal">
+    <p class="section-label">Domain · Research Objectives</p>
+    <h2 class="section-title">What We Aim to Achieve</h2>
+    <p class="section-desc">Five specific objectives guide the development of this integrated mental health prediction and intervention system.</p>
+  </div>
+
+  <div class="objectives-grid">
+    <div class="obj-card reveal">
+      <div class="obj-num">01</div>
+      <h3>Social Media Data Analysis</h3>
+      <p>Study and implement methods to extract and analyze user-permitted social media data for behavioral and emotional insights using advanced NLP techniques.</p>
+    </div>
+    <div class="obj-card reveal">
+      <div class="obj-num">02</div>
+      <h3>Mood Dashboard</h3>
+      <p>Design and develop a dashboard displaying mood trends, emotional history timelines, and downloadable mental health reports for users and clinicians.</p>
+    </div>
+    <div class="obj-card reveal">
+      <div class="obj-num">03</div>
+      <h3>Digital Twin Module</h3>
+      <p>Create a digital twin that mirrors the user's mental state in real-time and provides personalized tips, reminders, and activity suggestions.</p>
+    </div>
+    <div class="obj-card reveal">
+      <div class="obj-num">04</div>
+      <h3>CBT Chatbot</h3>
+      <p>Design a CBT-based chatbot for friendly, therapeutic conversation that alleviates anxiety and addresses mental health challenges through evidence-based dialogue flows.</p>
+    </div>
+    <div class="obj-card reveal">
+      <div class="obj-num">05</div>
+      <h3>Intervention Strategies</h3>
+      <p>Study and integrate mental health indicators, coping strategies, and personalized intervention recommendations into the application's recommendation engine.</p>
+    </div>
+  </div>
+</section>
+
+<!-- METHODOLOGY -->
+<section id="methodology" style="background:#101224;">
+  <div class="section-header reveal">
+    <p class="section-label">Domain · Methodology</p>
+    <h2 class="section-title">How We're Building It</h2>
+    <p class="section-desc">A full-stack architecture combining Flutter mobile, FastAPI backend, TensorFlow models, and Google Cloud infrastructure — containerized and privacy-by-design.</p>
+  </div>
+
+  <div class="method-grid reveal">
+    <div class="method-timeline">
+      <div class="method-step">
+        <div class="step-dot">1</div>
+        <div class="step-content">
+          <h4>User Onboarding & Consent</h4>
+          <p>OAuth-based social media authentication with explicit user consent management. All permissions stored as tokens; no data processed without active consent.</p>
+        </div>
+      </div>
+      <div class="method-step">
+        <div class="step-dot">2</div>
+        <div class="step-content">
+          <h4>Data Ingestion & Preprocessing</h4>
+          <p>Text and images ingested, anonymized, hashed, and streamed into analysis pipelines. Google Cloud Pub/Sub manages service communication with TLS encryption.</p>
+        </div>
+      </div>
+      <div class="method-step">
+        <div class="step-dot">3</div>
+        <div class="step-content">
+          <h4>AI Emotion Analysis</h4>
+          <p>Fine-tuned BERT models classify emotional states from text. EfficientNet-B0 CNN models analyze facial expressions from images. Models converted to TensorFlow Lite for on-device inference.</p>
+        </div>
+      </div>
+      <div class="method-step">
+        <div class="step-dot">4</div>
+        <div class="step-content">
+          <h4>Dashboard & Reports</h4>
+          <p>Syncfusion Flutter Charts render trend lines, distribution charts, and sentiment breakdowns. PDF reports generated via ReportLab and stored securely on Google Cloud Storage.</p>
+        </div>
+      </div>
+      <div class="method-step">
+        <div class="step-dot">5</div>
+        <div class="step-content">
+          <h4>Digital Twin & Alerts</h4>
+          <p>Rolling time-series scores classify users into four states. Collaborative filtering (ALS) surfaces personalized recommendations. Firebase Cloud Messaging sends push alerts for at-risk states.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="arch-box">
+      <h4>System Architecture</h4>
+      <div class="arch-layer"><span>Frontend Layer</span>Flutter Mobile App (Android / iOS)</div>
+      <div style="text-align:center;color:var(--text-muted);font-size:1.2rem;">↕</div>
+      <div class="arch-layer"><span>Auth & Notifications</span>Firebase Authentication · Firebase Cloud Messaging</div>
+      <div style="text-align:center;color:var(--text-muted);font-size:1.2rem;">↕</div>
+      <div class="arch-layer"><span>API Layer</span>FastAPI (Python 3.11) · Docker on GCP Compute Engine</div>
+      <div style="text-align:center;color:var(--text-muted);font-size:1.2rem;">↕</div>
+      <div class="arch-layer"><span>AI / ML Models</span>BERT (NLP) · EfficientNet-B0 (Image) · TensorFlow 2.15 · Rasa (Chatbot)</div>
+      <div style="text-align:center;color:var(--text-muted);font-size:1.2rem;">↕</div>
+      <div class="arch-layer"><span>Data Layer</span>PostgreSQL 15 (GCP Cloud SQL) · Google Cloud Storage (KMS encrypted)</div>
+      <div style="text-align:center;color:var(--text-muted);font-size:1.2rem;">↕</div>
+      <div class="arch-layer"><span>Messaging</span>Google Cloud Pub/Sub · TLS Certificates</div>
+    </div>
+  </div>
+</section>
+
+<!-- TECHNOLOGIES -->
+<section id="tech_used">
+  <div class="section-header reveal">
+    <p class="section-label">Domain · Technologies Used</p>
+    <h2 class="section-title">Technology Stack</h2>
+  </div>
+
+  <div class="tech-grid reveal">
+    <div class="tech-pill"><span class="t-icon">📱</span> Flutter (Dart)</div>
+    <div class="tech-pill"><span class="t-icon">🐍</span> Python 3.11</div>
+    <div class="tech-pill"><span class="t-icon">⚡</span> FastAPI</div>
+    <div class="tech-pill"><span class="t-icon">🤖</span> BERT / Transformers</div>
+    <div class="tech-pill"><span class="t-icon">🧠</span> TensorFlow 2.15</div>
+    <div class="tech-pill"><span class="t-icon">🖼️</span> EfficientNet-B0</div>
+    <div class="tech-pill"><span class="t-icon">💬</span> Rasa NLU</div>
+    <div class="tech-pill"><span class="t-icon">🐳</span> Docker</div>
+    <div class="tech-pill"><span class="t-icon">☁️</span> Google Cloud Platform</div>
+    <div class="tech-pill"><span class="t-icon">🔥</span> Firebase</div>
+    <div class="tech-pill"><span class="t-icon">🐘</span> PostgreSQL 15</div>
+    <div class="tech-pill"><span class="t-icon">📊</span> Syncfusion Flutter Charts</div>
+    <div class="tech-pill"><span class="t-icon">🔐</span> Cloud KMS</div>
+    <div class="tech-pill"><span class="t-icon">📨</span> Cloud Pub/Sub</div>
+    <div class="tech-pill"><span class="t-icon">📄</span> ReportLab</div>
+    <div class="tech-pill"><span class="t-icon">🔗</span> LSTM / GRU</div>
+  </div>
+</section>
+
+<!-- MILESTONES -->
+<section id="milestones">
+  <div class="section-header reveal">
+    <p class="section-label">Project Timeline</p>
+    <h2 class="section-title">Milestones</h2>
+    <p class="section-desc">Key assessments and deliverables across the full research timeline.</p>
+  </div>
+
+  <div class="milestones-track">
+    <div class="milestone reveal">
+      <div class="ms-date">Aug 2025</div>
+      <div class="ms-dot" style="background:var(--primary);"></div>
+      <div class="ms-content">
+        <h3>Topic Assessment Document</h3>
+        <p>Initial topic evaluation and research scope definition submitted to the department.</p>
+        <span class="ms-badge">✓ Submitted</span>
+      </div>
+    </div>
+    <div class="milestone reveal">
+      <div class="ms-date">Aug 2025</div>
+      <div class="ms-dot" style="background:var(--accent);"></div>
+      <div class="ms-content">
+        <h3>Project Proposal</h3>
+        <p>Detailed proposal report covering introduction, literature survey, research gap, objectives, methodology, requirements, and Gantt chart.</p>
+        <span class="ms-badge" style="background:rgba(56,207,172,0.12);color:var(--accent);">✓ Submitted</span>
+      </div>
+    </div>
+    <div class="milestone reveal">
+      <div class="ms-date">Progress</div>
+      <div class="ms-dot" style="background:#7B6CF5;"></div>
+      <div class="ms-content">
+        <h3>Progress Presentation 1</h3>
+        <p>Reviewing 50% completion status of the project — design validation, component architecture review, and initial model training results.</p>
+        <span class="ms-badge" style="background:rgba(123,108,245,0.12);color:#a8a0ff;">✓ Completed</span>
+      </div>
+    </div>
+    <div class="milestone reveal">
+      <div class="ms-date">Progress</div>
+      <div class="ms-dot" style="background:var(--warm);"></div>
+      <div class="ms-content">
+        <h3>Progress Presentation 2</h3>
+        <p>90% completion demonstration — integrated system walkthrough, model accuracy results, and dashboard/chatbot demonstration.</p>
+        <span class="ms-badge" style="background:rgba(244,132,95,0.12);color:var(--warm);">✓ Completed</span>
+      </div>
+    </div>
+    <div class="milestone reveal">
+      <div class="ms-date">Final</div>
+      <div class="ms-dot" style="background:#E86F3A;"></div>
+      <div class="ms-content">
+        <h3>Final Assessment</h3>
+        <p>Complete system evaluation including final report, individual and group contributions, and viva examination.</p>
+        <span class="ms-badge" style="background:rgba(232,111,58,0.12);color:#F4845F;">🔜 Upcoming</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOADS -->
+<section id="downloads" style="background:var(--dark);">
+  <div class="section-header reveal">
+    <p class="section-label">Documents & Presentations</p>
+    <h2 class="section-title">Downloads</h2>
+    <p class="section-desc">All project documents and presentation slides available for download via Google Drive.</p>
+  </div>
+
+  <p class="section-label" style="margin-bottom:1rem;">Documents</p>
+  <div class="downloads-grid">
+    <div class="doc-card reveal">
+      <div class="doc-header">
+        <div class="doc-icon">📋</div>
+        <div class="doc-info">
+          <h4>Topic Assessment Document</h4>
+          <span>Research topic evaluation report</span>
+        </div>
+      </div>
+      <div class="doc-links">
+        <a href="https://drive.google.com/drive/folders/1yvHZt7fY6fESP8e_wVTuw4Da_d6jMDFh?usp=sharing" class="doc-link" target="_blank">⬇ Group Download</a>
+      </div>
+    </div>
+    <div class="doc-card reveal">
+      <div class="doc-header">
+        <div class="doc-icon">📝</div>
+        <div class="doc-info">
+          <h4>Project Proposal</h4>
+          <span>Full proposal report — all individual components</span>
+        </div>
+      </div>
+      <div class="doc-links">
+        <a href="https://drive.google.com/drive/folders/13xnHliUnzTAF-OU1_nmOVsphSmJosWMF?usp=sharing" class="doc-link" target="_blank">⬇ Individual Download</a>
+      </div>
+    </div>
+  </div>
+
+  <p class="section-label" id="presentations" style="margin:3rem 0 1rem;">Presentations</p>
+  <div class="downloads-grid">
+    <div class="doc-card reveal">
+      <div class="doc-header">
+        <div class="doc-icon">🎤</div>
+        <div class="doc-info">
+          <h4>Proposal Presentation</h4>
+          <span>Initial project proposal slides</span>
+        </div>
+      </div>
+      <div class="doc-links">
+        <a href="https://drive.google.com/drive/folders/1j9D9Y7Gsi4BN4LBHdXhnB-GAybWAJPfF?usp=drive_link" class="doc-link" target="_blank">⬇ Group Download</a>
+      </div>
+    </div>
+    <div class="doc-card reveal">
+      <div class="doc-header">
+        <div class="doc-icon">📊</div>
+        <div class="doc-info">
+          <h4>Progress Presentation 1</h4>
+          <span>50% milestone review presentation</span>
+        </div>
+      </div>
+      <div class="doc-links">
+        <a href="https://drive.google.com/drive/folders/1RWJxDZ2zdLYZNBXjUd-EFXgbMX1-WXzL?usp=drive_link" class="doc-link" target="_blank">⬇ Group Download</a>
+      </div>
+    </div>
+    <div class="doc-card reveal">
+      <div class="doc-header">
+        <div class="doc-icon">📈</div>
+        <div class="doc-info">
+          <h4>Progress Presentation 2</h4>
+          <span>90% milestone system demonstration</span>
+        </div>
+      </div>
+      <div class="doc-links">
+        <a href="https://drive.google.com/drive/folders/1jraMJuMjPxktWQHjvbKgzXMmgvH_lchA?usp=sharing" class="doc-link" target="_blank">⬇ Group Download</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" style="background:#101224;">
+  <div class="section-header reveal">
+    <p class="section-label">The Team</p>
+    <h2 class="section-title">About Us</h2>
+    <p class="section-desc">Research conducted at the Department of Information Technology, Sri Lanka Institute of Information Technology.</p>
+  </div>
+
+  <p style="font-family:'Syne',sans-serif;font-size:0.8rem;color:var(--warm);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1rem;">Supervisor</p>
+  <div class="team-grid" style="margin-bottom:3rem;">
+    <div class="team-card reveal">
+      <div class="team-avatar supervisor-avatar">LR</div>
+      <h3>Ms. Lochana Rajamanthri</h3>
+      <p class="team-role">Project Supervisor · SLIIT</p>
+    </div>
+  </div>
+
+  <p style="font-family:'Syne',sans-serif;font-size:0.8rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1rem;">Research Group Members</p>
+  <div class="team-grid">
+    <div class="team-card reveal">
+      <div class="team-avatar">MW</div>
+      <h3>Maleesha Wijerathne</h3>
+      <p class="team-role">B.Sc. (Hons) Information Technology</p>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-avatar">SH</div>
+      <h3>Sithumina H L M</h3>
+      <p class="team-id">IT22899460</p>
+      <p class="team-role">B.Sc. (Hons) Software Engineering</p>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-avatar">AJ</div>
+      <h3>Athukorala A.J</h3>
+      <p class="team-id">IT22911612</p>
+      <p class="team-role">B.Sc. (Hons) Information Technology</p>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-avatar">AM</div>
+      <h3>Abeyrathna M G W N</h3>
+      <p class="team-role">B.Sc. (Hons) Information Technology</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header reveal">
+    <p class="section-label">Get In Touch</p>
+    <h2 class="section-title">Contact Us</h2>
+  </div>
+
+  <div class="contact-wrap">
+    <div class="contact-form reveal">
+      <div class="form-group">
+        <label>Your Name</label>
+        <input class="form-control" type="text" placeholder="John Doe">
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input class="form-control" type="email" placeholder="john@example.com">
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea class="form-control" rows="5" placeholder="Your message or query..."></textarea>
+      </div>
+      <button class="btn-primary" style="align-self:flex-start;" onclick="alert('Thank you for your message! We will get back to you soon.')">Send Message →</button>
+    </div>
+
+    <div class="contact-info reveal">
+      <div class="contact-item">
+        <div class="c-icon">🎓</div>
+        <div>
+          <p class="c-label">Institution</p>
+          <p class="c-val">Sri Lanka Institute of Information Technology</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="c-icon">📚</div>
+        <div>
+          <p class="c-label">Department</p>
+          <p class="c-val">Department of Information Technology</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="c-icon">🔬</div>
+        <div>
+          <p class="c-label">Research Project ID</p>
+          <p class="c-val">25-26J-173</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="c-icon">📅</div>
+        <div>
+          <p class="c-label">Academic Year</p>
+          <p class="c-val">2025 – 2026</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <span>MindSense AI Research Group</span> · 25-26J-173 · SLIIT · Department of Information Technology</p>
+  <p style="margin-top:0.5rem;">Mental Health Prediction Using Social Media & Sentiment Analysis</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 80 * (Array.from(entry.target.parentNode.children).indexOf(entry.target) % 4));
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Smooth active nav
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      if (window.scrollY >= section.offsetTop - 100) current = section.getAttribute('id');
+    });
+    navLinks.forEach(link => {
+      link.style.color = link.getAttribute('href') === '#'+current ? 'var(--accent)' : '';
+    });
+  });
+</script>
+</body>
 </html>
