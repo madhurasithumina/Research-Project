@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 460" role="img" aria-label="Illustrative emotional trend line chart">
+  <defs>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7c5cff" />
+      <stop offset="1" stop-color="#24d6a7" />
+    </linearGradient>
+  </defs>
+
+  <rect width="920" height="460" rx="22" fill="rgba(0,0,0,0.18)" stroke="rgba(255,255,255,0.12)" />
+
+  <text x="34" y="54" font-family="ui-sans-serif, system-ui" font-size="18" fill="rgba(255,255,255,0.86)">Longitudinal monitoring (illustration)</text>
+  <text x="34" y="80" font-family="ui-sans-serif, system-ui" font-size="14" fill="rgba(255,255,255,0.62)">Detecting trend changes and prompting support when risk rises</text>
+
+  <!-- Plot area -->
+  <g transform="translate(60 110)">
+    <rect x="0" y="0" width="800" height="280" rx="18" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.10)" />
+
+    <!-- grid -->
+    <g stroke="rgba(255,255,255,0.08)" stroke-width="1">
+      <path d="M0 56H800" />
+      <path d="M0 112H800" />
+      <path d="M0 168H800" />
+      <path d="M0 224H800" />
+      <path d="M160 0V280" />
+      <path d="M320 0V280" />
+      <path d="M480 0V280" />
+      <path d="M640 0V280" />
+    </g>
+
+    <!-- axis labels -->
+    <text x="0" y="304" font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(255,255,255,0.62)">Week 1</text>
+    <text x="160" y="304" font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(255,255,255,0.62)">Week 2</text>
+    <text x="320" y="304" font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(255,255,255,0.62)">Week 3</text>
+    <text x="480" y="304" font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(255,255,255,0.62)">Week 4</text>
+    <text x="640" y="304" font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(255,255,255,0.62)">Week 5</text>
+
+    <text x="-14" y="24" text-anchor="end" font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(255,255,255,0.62)">High risk</text>
+    <text x="-14" y="254" text-anchor="end" font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(255,255,255,0.62)">Low risk</text>
+
+    <!-- Trend path -->
+    <path d="M20 210 C 120 200, 160 160, 240 150 C 320 140, 360 190, 420 206 C 500 228, 540 128, 620 120 C 700 112, 740 146, 780 150"
+          fill="none" stroke="url(#acc)" stroke-width="4" stroke-linecap="round" />
+
+    <!-- intervention markers -->
+    <g>
+      <circle cx="420" cy="206" r="8" fill="rgba(255,204,102,0.20)" stroke="rgba(255,204,102,0.70)" stroke-width="2" />
+      <text x="420" y="234" text-anchor="middle" font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(255,255,255,0.72)">check-in</text>
+
+      <circle cx="620" cy="120" r="8" fill="rgba(255,204,102,0.20)" stroke="rgba(255,204,102,0.70)" stroke-width="2" />
+      <text x="620" y="98" text-anchor="middle" font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(255,255,255,0.72)">support</text>
+    </g>
+
+    <!-- shaded high-risk band -->
+    <rect x="0" y="0" width="800" height="70" fill="rgba(255,92,92,0.05)" />
+    <text x="14" y="24" font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(255,255,255,0.60)">alert zone</text>
+  </g>
+</svg>

@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 460" role="img" aria-label="Privacy and ethics shield diagram">
+  <defs>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7c5cff" />
+      <stop offset="1" stop-color="#24d6a7" />
+    </linearGradient>
+  </defs>
+
+  <rect width="920" height="460" rx="22" fill="rgba(0,0,0,0.18)" stroke="rgba(255,255,255,0.12)" />
+
+  <text x="34" y="54" font-family="ui-sans-serif, system-ui" font-size="18" fill="rgba(255,255,255,0.86)">Ethics & privacy safeguards (concept)</text>
+  <text x="34" y="80" font-family="ui-sans-serif, system-ui" font-size="14" fill="rgba(255,255,255,0.62)">Consent, anonymization, and responsible AI usage</text>
+
+  <g transform="translate(110 120)">
+    <!-- Shield -->
+    <path d="M350 30c70 44 140 44 210 0v150c0 110-85 175-210 210-125-35-210-100-210-210V30c70 44 140 44 210 0z"
+          fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.14)" stroke-width="2" />
+
+    <path d="M350 62c55 34 110 34 165 0v118c0 80-60 130-165 156-105-26-165-76-165-156V62c55 34 110 34 165 0z"
+          fill="url(#acc)" opacity="0.22" />
+
+    <path d="M350 138c32 0 58 26 58 58 0 32-26 58-58 58-32 0-58-26-58-58 0-32 26-58 58-58z"
+          fill="rgba(0,0,0,0.18)" stroke="rgba(255,255,255,0.12)" />
+    <path d="M350 158c18 0 32 14 32 32" fill="none" stroke="rgba(255,255,255,0.80)" stroke-width="4" stroke-linecap="round" />
+    <path d="M332 196l12 12 26-30" fill="none" stroke="rgba(255,255,255,0.90)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+
+    <text x="350" y="410" text-anchor="middle" font-family="ui-sans-serif, system-ui" font-size="13" fill="rgba(255,255,255,0.66)">Privacy-by-design mindset</text>
+  </g>
+
+  <!-- Pillars -->
+  <g transform="translate(40 126)">
+    <g>
+      <rect x="0" y="0" width="260" height="86" rx="18" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" />
+      <text x="18" y="36" font-family="ui-sans-serif, system-ui" font-size="14" fill="rgba(255,255,255,0.84)">1) Consent</text>
+      <text x="18" y="60" font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(255,255,255,0.62)">clear opt-in + user control</text>
+    </g>
+
+    <g transform="translate(0 106)">
+      <rect x="0" y="0" width="260" height="86" rx="18" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" />
+      <text x="18" y="36" font-family="ui-sans-serif, system-ui" font-size="14" fill="rgba(255,255,255,0.84)">2) Anonymization</text>
+      <text x="18" y="60" font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(255,255,255,0.62)">remove identifiers + safe storage</text>
+    </g>
+
+    <g transform="translate(0 212)">
+      <rect x="0" y="0" width="260" height="86" rx="18" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" />
+      <text x="18" y="36" font-family="ui-sans-serif, system-ui" font-size="14" fill="rgba(255,255,255,0.84)">3) Responsible AI</text>
+      <text x="18" y="60" font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(255,255,255,0.62)">fairness, transparency, safeguards</text>
+    </g>
+  </g>
+
+  <g transform="translate(640 126)">
+    <g>
+      <rect x="0" y="0" width="240" height="86" rx="18" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" />
+      <text x="18" y="36" font-family="ui-sans-serif, system-ui" font-size="14" fill="rgba(255,255,255,0.84)">Security</text>
+      <text x="18" y="60" font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(255,255,255,0.62)">access control + encryption</text>
+    </g>
+
+    <g transform="translate(0 106)">
+      <rect x="0" y="0" width="240" height="86" rx="18" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" />
+      <text x="18" y="36" font-family="ui-sans-serif, system-ui" font-size="14" fill="rgba(255,255,255,0.84)">Minimization</text>
+      <text x="18" y="60" font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(255,255,255,0.62)">collect only what is needed</text>
+    </g>
+
+    <g transform="translate(0 212)">
+      <rect x="0" y="0" width="240" height="86" rx="18" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" />
+      <text x="18" y="36" font-family="ui-sans-serif, system-ui" font-size="14" fill="rgba(255,255,255,0.84)">Auditability</text>
+      <text x="18" y="60" font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(255,255,255,0.62)">logging + model monitoring</text>
+    </g>
+  </g>
+</svg>

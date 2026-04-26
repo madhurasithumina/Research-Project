@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 460" role="img" aria-label="Conceptual multimodal coverage donut chart">
+  <defs>
+    <linearGradient id="t" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7c5cff" />
+      <stop offset="1" stop-color="#7c5cff" stop-opacity="0.55" />
+    </linearGradient>
+    <linearGradient id="i" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#24d6a7" />
+      <stop offset="1" stop-color="#24d6a7" stop-opacity="0.55" />
+    </linearGradient>
+    <linearGradient id="s" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffcc66" />
+      <stop offset="1" stop-color="#ffcc66" stop-opacity="0.55" />
+    </linearGradient>
+  </defs>
+
+  <rect width="920" height="460" rx="22" fill="rgba(0,0,0,0.18)" stroke="rgba(255,255,255,0.12)" />
+
+  <text x="34" y="54" font-family="ui-sans-serif, system-ui" font-size="18" fill="rgba(255,255,255,0.86)">Complementary signal coverage</text>
+  <text x="34" y="80" font-family="ui-sans-serif, system-ui" font-size="14" fill="rgba(255,255,255,0.62)">Conceptual view (not measured results)</text>
+
+  <!-- Donut (three arcs) -->
+  <g transform="translate(300 110)">
+    <circle cx="120" cy="120" r="92" fill="none" stroke="rgba(255,255,255,0.10)" stroke-width="34" />
+
+    <!-- Text arc -->
+    <path d="M120 28 A92 92 0 0 1 211 134" fill="none" stroke="url(#t)" stroke-width="34" stroke-linecap="round" />
+    <!-- Image arc -->
+    <path d="M211 134 A92 92 0 0 1 120 212" fill="none" stroke="url(#i)" stroke-width="34" stroke-linecap="round" />
+    <!-- Survey arc -->
+    <path d="M120 212 A92 92 0 0 1 120 28" fill="none" stroke="url(#s)" stroke-width="34" stroke-linecap="round" />
+
+    <circle cx="120" cy="120" r="58" fill="rgba(0,0,0,0.20)" stroke="rgba(255,255,255,0.10)" />
+    <text x="120" y="116" text-anchor="middle" font-family="ui-sans-serif, system-ui" font-size="16" fill="rgba(255,255,255,0.84)">Multimodal</text>
+    <text x="120" y="138" text-anchor="middle" font-family="ui-sans-serif, system-ui" font-size="13" fill="rgba(255,255,255,0.62)">fusion</text>
+  </g>
+
+  <!-- Legend + explanation -->
+  <g transform="translate(580 138)">
+    <g>
+      <rect x="0" y="0" width="300" height="48" rx="14" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" />
+      <rect x="14" y="14" width="20" height="20" rx="6" fill="url(#t)" />
+      <text x="44" y="32" font-family="ui-sans-serif, system-ui" font-size="14" fill="rgba(255,255,255,0.82)">Text</text>
+      <text x="96" y="32" font-family="ui-sans-serif, system-ui" font-size="13" fill="rgba(255,255,255,0.62)">language + sentiment context</text>
+    </g>
+
+    <g transform="translate(0 62)">
+      <rect x="0" y="0" width="300" height="48" rx="14" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" />
+      <rect x="14" y="14" width="20" height="20" rx="6" fill="url(#i)" />
+      <text x="44" y="32" font-family="ui-sans-serif, system-ui" font-size="14" fill="rgba(255,255,255,0.82)">Images</text>
+      <text x="104" y="32" font-family="ui-sans-serif, system-ui" font-size="13" fill="rgba(255,255,255,0.62)">facial & visual emotion cues</text>
+    </g>
+
+    <g transform="translate(0 124)">
+      <rect x="0" y="0" width="300" height="48" rx="14" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" />
+      <rect x="14" y="14" width="20" height="20" rx="6" fill="url(#s)" />
+      <text x="44" y="32" font-family="ui-sans-serif, system-ui" font-size="14" fill="rgba(255,255,255,0.82)">Surveys</text>
+      <text x="112" y="32" font-family="ui-sans-serif, system-ui" font-size="13" fill="rgba(255,255,255,0.62)">longitudinal behavioral signals</text>
+    </g>
+
+    <text x="0" y="214" font-family="ui-sans-serif, system-ui" font-size="13" fill="rgba(255,255,255,0.62)">
+      Fusion helps when one stream is missing or conflicting.
+    </text>
+  </g>
+</svg>

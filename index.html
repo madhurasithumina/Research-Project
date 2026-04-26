@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Multimodal mental health prediction and monitoring system using social media text, images, and survey-based behavioral signals." />
+
+    <title>Research Website | Multimodal Mental Health Prediction</title>
+
+    <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" data-elevated="false">
+      <div class="container header-row">
+        <a class="brand" href="#home" aria-label="Go to home">
+          <img class="brand-logo" src="assets/img/logo.svg" alt="" aria-hidden="true" />
+          <span class="brand-text">
+            <span class="brand-title">Research Website</span>
+            <span class="brand-subtitle">Multimodal Mental Health Prediction</span>
+          </span>
+        </a>
+
+        <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav">
+          <span class="nav-toggle-bars" aria-hidden="true"><span></span></span>
+        </button>
+
+        <nav id="nav" class="nav" aria-label="Primary">
+          <a href="#home">Home</a>
+          <a href="#project-scope">Project Scope</a>
+          <a href="#documents">Documents</a>
+          <a href="#tech">Technologies</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section id="home" class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">AI • NLP • Computer Vision • Time-Series</p>
+            <h1>Early, continuous mental health risk monitoring using text, images, and behavioral signals</h1>
+            <p class="lead">
+              We propose an intelligent, multimodal prediction system that combines social media language, facial-expression cues, and survey-based
+              behavioral indicators to support long-term tracking and personalized intervention.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn primary" href="#project-scope">Learn more</a>
+              <a class="btn" href="#documents">View documents</a>
+            </div>
+
+            <dl class="hero-metrics" aria-label="Project highlights">
+              <div class="metric">
+                <dt>Inputs</dt>
+                <dd>Text • Images • Surveys</dd>
+              </div>
+              <div class="metric">
+                <dt>Models</dt>
+                <dd>Transformers • CNN • LSTM/GRU</dd>
+              </div>
+              <div class="metric">
+                <dt>Outputs</dt>
+                <dd>Risk level + trends + support</dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="hero-visual" aria-hidden="true">
+            <img class="hero-img" src="assets/img/hero-illustration.svg" alt="" />
+            <p class="caption">Conceptual overview of multimodal signals and monitoring.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="project-scope" class="section alt">
+        <div class="container">
+          <div class="section-head">
+            <h2>Project Scope</h2>
+            <p>
+              This section summarizes the motivation, gaps, problem framing, and the proposed system design for a multimodal mental health prediction
+              and monitoring platform.
+            </p>
+          </div>
+
+          <div class="grid three">
+            <a class="card card-link" href="#literature">
+              <h3>Literature Survey</h3>
+              <p>Evidence that language, vision, and trends carry mental health signals.</p>
+            </a>
+            <a class="card card-link" href="#gap">
+              <h3>Research Gap</h3>
+              <p>Limitations in long-term analysis, fusion, personalization, and ethics.</p>
+            </a>
+            <a class="card card-link" href="#problem">
+              <h3>Problem & Solution</h3>
+              <p>Unified pipeline with risk classification, monitoring, and support.</p>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="literature" class="section">
+        <div class="container">
+          <div class="section-head">
+            <h2>📚 Literature Survey</h2>
+            <p>
+              Mental health conditions such as depression, anxiety, and chronic stress affect millions globally. Traditional diagnosis often depends on
+              clinical interviews and self-reporting, which can be delayed and inaccessible. Recent literature highlights that social media provides
+              real-time, naturally occurring signals of emotional and psychological state.
+            </p>
+          </div>
+
+          <div class="grid two">
+            <article class="card">
+              <h3>Social media as a signal source</h3>
+              <ul>
+                <li>Textual patterns can reveal affect, cognition, and distress signals.</li>
+                <li>Language features (sentiment, pronouns, emotional tone) correlate with depression and anxiety.</li>
+                <li>Longer-form platforms can capture richer emotional narratives.</li>
+              </ul>
+            </article>
+
+            <article class="card">
+              <h3>Deep learning improves prediction</h3>
+              <ul>
+                <li>Transformer models (e.g., BERT-like) capture context in informal language better than TF‑IDF/Word2Vec baselines.</li>
+                <li>Computer vision models can detect facial-expression patterns indicating emotional state.</li>
+                <li>Sequence models (LSTM/GRU) support trend analysis over time (sleep, stress, mood trajectories).</li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="grid two">
+            <figure class="figure card">
+              <div class="figure-top">
+                <h3>Data sources in our system</h3>
+                <p class="muted">Three complementary streams to reduce blind spots.</p>
+              </div>
+              <img class="figure-img" src="assets/img/data-sources.svg" alt="Diagram of inputs: social media text, images, and survey-based behavioral data" />
+              <figcaption class="caption">Inputs are integrated for richer, more robust monitoring.</figcaption>
+            </figure>
+
+            <figure class="figure card">
+              <div class="figure-top">
+                <h3>Signal coverage (illustrative)</h3>
+                <p class="muted">Why multimodal can outperform single-modality approaches.</p>
+              </div>
+              <img class="figure-img" src="assets/img/multimodal-donut.svg" alt="Donut chart showing complementary coverage of text, image, and survey signals" />
+              <figcaption class="caption">Conceptual view (not measured results).</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section id="gap" class="section alt">
+        <div class="container">
+          <div class="section-head">
+            <h2>⚠️ Research Gap</h2>
+            <p>Despite strong progress, current systems often struggle with real-world continuity, integration, and personalization.</p>
+          </div>
+
+          <div class="grid three">
+            <article class="card">
+              <h3>Long-term tracking is limited</h3>
+              <p>Many studies focus on one-time detection instead of monitoring changes over time.</p>
+            </article>
+            <article class="card">
+              <h3>Incomplete data integration</h3>
+              <p>Most approaches rely on text <em>or</em> images <em>or</em> surveys, not a unified pipeline.</p>
+            </article>
+            <article class="card">
+              <h3>Platform constraints</h3>
+              <p>Research frequently centers on Twitter/Reddit, underutilizing richer long-form content on platforms like Facebook.</p>
+            </article>
+            <article class="card">
+              <h3>Fusion conflicts</h3>
+              <p>Multimodal systems can mis-handle mismatched signals (e.g., happy image with a distressed caption).</p>
+            </article>
+            <article class="card">
+              <h3>Little personalized intervention</h3>
+              <p>Many works stop at prediction and do not deliver real-time support or recommendations.</p>
+            </article>
+            <article class="card">
+              <h3>Ethics and privacy</h3>
+              <p>Consent, anonymization, and responsible AI practices are not consistently addressed.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="problem" class="section">
+        <div class="container">
+          <div class="section-head">
+            <h2>❗ Research Problem & Proposed Solution</h2>
+            <p>
+              Mental health disorders are increasing worldwide, but early detection and continuous intervention are limited by delayed clinical
+              diagnosis and fragmented understanding of behavior across data sources.
+            </p>
+          </div>
+
+          <div class="grid two">
+            <article class="card">
+              <h3>🔴 Research Problem</h3>
+              <ul>
+                <li>Diagnosis is often late and access is uneven.</li>
+                <li>Static, single-source models miss context and temporal patterns.</li>
+                <li>Social signals alone may be incomplete; surveys alone lack behavioral context.</li>
+              </ul>
+            </article>
+
+            <article class="card accent">
+              <h3>🟢 Proposed Solution</h3>
+              <ul>
+                <li><strong>Integrate</strong> social media text, images (facial cues), and survey data.</li>
+                <li><strong>Model</strong> language with transformers; trends with LSTM/GRU; images with CNN backbones.</li>
+                <li><strong>Fuse</strong> modalities into a single prediction with confidence-aware reasoning.</li>
+                <li><strong>Deliver</strong> risk classification (low / moderate / high), trend monitoring, and personalized support.</li>
+              </ul>
+            </article>
+          </div>
+
+          <figure class="figure card">
+            <div class="figure-top">
+              <h3>System architecture (conceptual)</h3>
+              <p class="muted">End-to-end pipeline from data to support and monitoring.</p>
+            </div>
+            <img class="figure-img" src="assets/img/methodology-pipeline.svg" alt="Pipeline diagram: inputs to preprocessing to models to fusion and risk classification, with outputs to dashboard, chatbot, and digital twin" />
+            <figcaption class="caption">Conceptual architecture; implementation details can vary.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="objectives" class="section alt">
+        <div class="container">
+          <div class="section-head">
+            <h2>🎯 Research Objectives</h2>
+            <p class="muted">Main objective: build an intelligent, multimodal prediction and monitoring system enabling early detection and personalized intervention.</p>
+          </div>
+
+          <div class="grid two">
+            <article class="card">
+              <h3>Specific objectives</h3>
+              <ul class="checklist">
+                <li>Text-based NLP analysis for emotional patterns</li>
+                <li>Time-series prediction of changes over time (LSTM/GRU)</li>
+                <li>Multimodal text+image analysis for better robustness</li>
+                <li>Context-aware modeling for informal language</li>
+                <li>Risk classification (low / moderate / high)</li>
+                <li>CBT-inspired chatbot support</li>
+                <li>Dashboards + digital twin monitoring</li>
+                <li>Ethical implementation: privacy, consent, responsible AI</li>
+              </ul>
+            </article>
+
+            <article class="card">
+              <h3>What we measure</h3>
+              <p class="muted">Evaluation focuses on predictive quality and usefulness for monitoring.</p>
+              <div class="pill-row" role="list" aria-label="Evaluation metrics">
+                <span class="pill" role="listitem">Accuracy</span>
+                <span class="pill" role="listitem">Precision</span>
+                <span class="pill" role="listitem">Recall</span>
+                <span class="pill" role="listitem">F1-score</span>
+                <span class="pill" role="listitem">Usability</span>
+                <span class="pill" role="listitem">Privacy validation</span>
+              </div>
+              <div class="note">
+                <strong>Note:</strong> Charts shown are conceptual unless backed by collected results.
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="methodology" class="section">
+        <div class="container">
+          <div class="section-head">
+            <h2>⚙️ Methodology</h2>
+            <p>A structured pipeline from data collection to deployment and validation.</p>
+          </div>
+
+          <div class="timeline card">
+            <ol class="timeline-list">
+              <li>
+                <h3>1. Data collection</h3>
+                <p>Facebook posts/captions, images, and survey signals (mood, sleep, stress, behavior).</p>
+              </li>
+              <li>
+                <h3>2. Preprocessing</h3>
+                <p>Text cleaning, face detection/normalization, labeling, anonymization.</p>
+              </li>
+              <li>
+                <h3>3. Feature extraction</h3>
+                <p>Sentiment and embeddings, facial emotion features, behavioral indicators.</p>
+              </li>
+              <li>
+                <h3>4. Model development</h3>
+                <p>Transformers for text, CNN for images, LSTM/GRU for sequences, fusion for combined inference.</p>
+              </li>
+              <li>
+                <h3>5. Prediction & classification</h3>
+                <p>Emotional state + risk level (low/moderate/high) with trend monitoring.</p>
+              </li>
+              <li>
+                <h3>6–8. System + evaluation + deployment</h3>
+                <p>Dashboard, chatbot, digital twin; evaluate metrics; functional/usability/privacy testing.</p>
+              </li>
+            </ol>
+          </div>
+
+          <div class="grid two">
+            <figure class="figure card">
+              <div class="figure-top">
+                <h3>Long-term monitoring concept</h3>
+                <p class="muted">From events to trends and intervention triggers.</p>
+              </div>
+              <img class="figure-img" src="assets/img/longitudinal-trends.svg" alt="Line chart illustration showing emotional trend over time with intervention points" />
+              <figcaption class="caption">Illustration of trend tracking and support prompts.</figcaption>
+            </figure>
+
+            <figure class="figure card">
+              <div class="figure-top">
+                <h3>Privacy by design (concept)</h3>
+                <p class="muted">Consent, anonymization, and safe model usage.</p>
+              </div>
+              <img class="figure-img" src="assets/img/privacy-shield.svg" alt="Shield diagram representing consent, anonymization, and responsible AI" />
+              <figcaption class="caption">Ethical and privacy safeguards are first-class requirements.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section id="documents" class="section">
+        <div class="container">
+          <div class="section-head">
+            <h2>📄 Documents</h2>
+            <p>Project files available in this repository/workspace (PDFs and slides).</p>
+          </div>
+
+          <div class="grid two">
+            <article class="card">
+              <h3>Website instructions</h3>
+              <ul>
+                <li><a href="Website.pdf">Website.pdf</a></li>
+              </ul>
+            </article>
+
+            <article class="card">
+              <h3>Topic assessment</h3>
+              <ul>
+                <li><a href="topic%20assessment/topic%20assessment.pdf">Topic assessment (PDF)</a></li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="grid two">
+            <article class="card">
+              <h3>Proposals</h3>
+              <ul>
+                <li><a href="proposal/IT22339324%20-%20WIJERATHNE%20M%20A%20S%20M.pdf">IT22339324 - WIJERATHNE M A S M</a></li>
+                <li><a href="proposal/IT22899460_SITHUMINA%20H%20L%20M.pdf">IT22899460_SITHUMINA H L M</a></li>
+                <li><a href="proposal/IT22911612_ATHUKORALA%20A%20J.pdf">IT22911612_ATHUKORALA A J</a></li>
+                <li><a href="proposal/IT22926012_Abeyrathna%20M%20G%20W%20N.pdf">IT22926012_Abeyrathna M G W N</a></li>
+              </ul>
+            </article>
+
+            <article class="card">
+              <h3>Presentations</h3>
+              <ul>
+                <li><a href="presentation/pp1.pptx">pp1.pptx</a></li>
+                <li><a href="presentation/pp2.pptx">pp2.pptx</a></li>
+                <li><a href="presentation/praposal.pptx">praposal.pptx</a></li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="tech" class="section alt">
+        <div class="container">
+          <div class="section-head">
+            <h2>💻 Technologies Used</h2>
+            <p>Tooling choices to support NLP, vision, time-series modeling, and deployment.</p>
+          </div>
+
+          <div class="icon-grid" aria-label="Technology icons">
+            <div class="icon-card"><img src="assets/img/tech/python.svg" alt="Python" /><span>Python</span></div>
+            <div class="icon-card"><img src="assets/img/tech/pytorch.svg" alt="PyTorch" /><span>PyTorch</span></div>
+            <div class="icon-card"><img src="assets/img/tech/tensorflow.svg" alt="TensorFlow" /><span>TensorFlow</span></div>
+            <div class="icon-card"><img src="assets/img/tech/opencv.svg" alt="OpenCV" /><span>OpenCV</span></div>
+            <div class="icon-card"><img src="assets/img/tech/huggingface.svg" alt="Hugging Face" /><span>Transformers</span></div>
+            <div class="icon-card"><img src="assets/img/tech/flask.svg" alt="Flask" /><span>Flask</span></div>
+            <div class="icon-card"><img src="assets/img/tech/fastapi.svg" alt="FastAPI" /><span>FastAPI</span></div>
+            <div class="icon-card"><img src="assets/img/tech/mongodb.svg" alt="MongoDB" /><span>MongoDB</span></div>
+          </div>
+
+          <div class="grid three">
+            <article class="card">
+              <h3>Programming & frameworks</h3>
+              <ul>
+                <li>Python</li>
+                <li>TensorFlow / PyTorch</li>
+                <li>Scikit-learn</li>
+              </ul>
+            </article>
+            <article class="card">
+              <h3>NLP & AI models</h3>
+              <ul>
+                <li>BERT / RoBERTa-style transformers</li>
+                <li>LSTM / GRU</li>
+                <li>CNN backbones (ResNet/EfficientNet family)</li>
+              </ul>
+            </article>
+            <article class="card">
+              <h3>Libraries & tools</h3>
+              <ul>
+                <li>Hugging Face Transformers</li>
+                <li>OpenCV</li>
+                <li>NLTK / SpaCy</li>
+                <li>Pandas / NumPy</li>
+              </ul>
+            </article>
+            <article class="card">
+              <h3>Visualization</h3>
+              <ul>
+                <li>Matplotlib / Seaborn</li>
+                <li>Dashboard (React / Streamlit)</li>
+              </ul>
+            </article>
+            <article class="card">
+              <h3>Deployment</h3>
+              <ul>
+                <li>Flask / FastAPI</li>
+                <li>Cloud platforms (optional)</li>
+              </ul>
+            </article>
+            <article class="card">
+              <h3>Data + integration</h3>
+              <ul>
+                <li>API integration</li>
+                <li>Database (MySQL / MongoDB)</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="summary" class="section">
+        <div class="container">
+          <div class="section-head">
+            <h2>✅ Final Summary</h2>
+            <p>
+              This research unifies four key components — text analysis, image analysis, time-series prediction, and behavioral signals — into a single
+              monitoring system designed for practical, real-time support.
+            </p>
+          </div>
+
+          <div class="grid two">
+            <article class="card accent">
+              <h3>What the system delivers</h3>
+              <ul>
+                <li>Real-time risk estimation with transparent inputs</li>
+                <li>Long-term emotional trend analysis</li>
+                <li>Risk level classification: low, moderate, high</li>
+                <li>Personalized support via a CBT-inspired chatbot</li>
+                <li>Dashboards + digital twin for monitoring</li>
+              </ul>
+            </article>
+
+            <article class="card">
+              <h3>Next steps (practical)</h3>
+              <ol>
+                <li>Finalize data access, consent, and anonymization workflow</li>
+                <li>Define labels and evaluation protocol</li>
+                <li>Build baseline models then iterate to multimodal fusion</li>
+                <li>Integrate dashboard + chatbot + monitoring view</li>
+              </ol>
+            </article>
+          </div>
+
+          <div class="footer-cta">
+            <a class="btn primary" href="#home">Back to top</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section alt">
+        <div class="container">
+          <div class="section-head">
+            <h2>📬 Contact</h2>
+            <p>Use this form to send feedback or collaboration requests.</p>
+          </div>
+
+          <div class="grid two">
+            <article class="card">
+              <h3>Email</h3>
+              <p class="muted">Update the email address if needed.</p>
+              <p><a class="btn" href="mailto:your-team-email@example.com">your-team-email@example.com</a></p>
+              <div class="note"><strong>Privacy:</strong> avoid sending sensitive personal health data via email.</div>
+            </article>
+
+            <form class="card form" action="mailto:your-team-email@example.com" method="post" enctype="text/plain">
+              <h3>Message</h3>
+              <label class="field">
+                <span>Name</span>
+                <input class="input" name="name" autocomplete="name" required />
+              </label>
+              <label class="field">
+                <span>Email</span>
+                <input class="input" type="email" name="email" autocomplete="email" required />
+              </label>
+              <label class="field">
+                <span>Message</span>
+                <textarea class="input textarea" name="message" rows="5" required></textarea>
+              </label>
+              <button class="btn primary" type="submit">Send</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-row">
+        <p class="muted">© <span id="year"></span> Research Project • Multimodal Mental Health Prediction</p>
+        <p class="muted">Built as a static site (GitHub Pages compatible).</p>
+      </div>
+    </footer>
+
+    <script src="assets/script.js" defer></script>
+  </body>
+</html>

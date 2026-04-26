@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 520" role="img" aria-label="Conceptual system pipeline diagram">
+  <defs>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7c5cff" />
+      <stop offset="1" stop-color="#24d6a7" />
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="rgba(255,255,255,0.35)" />
+    </marker>
+  </defs>
+
+  <rect width="1100" height="520" rx="22" fill="rgba(0,0,0,0.18)" stroke="rgba(255,255,255,0.12)" />
+
+  <text x="34" y="54" font-family="ui-sans-serif, system-ui" font-size="18" fill="rgba(255,255,255,0.86)">End-to-end pipeline</text>
+  <text x="34" y="80" font-family="ui-sans-serif, system-ui" font-size="14" fill="rgba(255,255,255,0.62)">Inputs → preprocessing → models → fusion → risk + monitoring</text>
+
+  <!-- Inputs -->
+  <g transform="translate(44 120)">
+    <rect x="0" y="0" width="220" height="78" rx="16" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" />
+    <text x="18" y="32" font-family="ui-sans-serif, system-ui" font-size="14" fill="rgba(255,255,255,0.82)">Text</text>
+    <text x="18" y="54" font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(255,255,255,0.62)">posts • captions • comments</text>
+
+    <rect x="0" y="96" width="220" height="78" rx="16" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" />
+    <text x="18" y="128" font-family="ui-sans-serif, system-ui" font-size="14" fill="rgba(255,255,255,0.82)">Images</text>
+    <text x="18" y="150" font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(255,255,255,0.62)">facial expressions</text>
+
+    <rect x="0" y="192" width="220" height="78" rx="16" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" />
+    <text x="18" y="224" font-family="ui-sans-serif, system-ui" font-size="14" fill="rgba(255,255,255,0.82)">Surveys</text>
+    <text x="18" y="246" font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(255,255,255,0.62)">mood • stress • sleep</text>
+  </g>
+
+  <!-- Preprocessing -->
+  <g transform="translate(320 160)">
+    <rect x="0" y="0" width="240" height="180" rx="18" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" />
+    <text x="18" y="36" font-family="ui-sans-serif, system-ui" font-size="14" fill="rgba(255,255,255,0.82)">Preprocessing</text>
+    <text x="18" y="62" font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(255,255,255,0.62)">cleaning • normalization • anonymization</text>
+
+    <rect x="18" y="86" width="204" height="34" rx="12" fill="rgba(124,92,255,0.14)" stroke="rgba(124,92,255,0.28)" />
+    <text x="30" y="108" font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(255,255,255,0.78)">Text cleaning + tokenization</text>
+
+    <rect x="18" y="128" width="204" height="34" rx="12" fill="rgba(36,214,167,0.12)" stroke="rgba(36,214,167,0.28)" />
+    <text x="30" y="150" font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(255,255,255,0.78)">Face detect + normalize</text>
+
+    <rect x="18" y="170" width="204" height="34" rx="12" fill="rgba(255,204,102,0.10)" stroke="rgba(255,204,102,0.28)" />
+    <text x="30" y="192" font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(255,255,255,0.78)">Survey scaling + imputation</text>
+  </g>
+
+  <!-- Models -->
+  <g transform="translate(616 120)">
+    <rect x="0" y="0" width="240" height="78" rx="16" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" />
+    <text x="18" y="32" font-family="ui-sans-serif, system-ui" font-size="14" fill="rgba(255,255,255,0.82)">Transformer (NLP)</text>
+    <text x="18" y="54" font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(255,255,255,0.62)">contextual embeddings</text>
+
+    <rect x="0" y="96" width="240" height="78" rx="16" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" />
+    <text x="18" y="128" font-family="ui-sans-serif, system-ui" font-size="14" fill="rgba(255,255,255,0.82)">CNN (Vision)</text>
+    <text x="18" y="150" font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(255,255,255,0.62)">emotion features</text>
+
+    <rect x="0" y="192" width="240" height="78" rx="16" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" />
+    <text x="18" y="224" font-family="ui-sans-serif, system-ui" font-size="14" fill="rgba(255,255,255,0.82)">LSTM/GRU</text>
+    <text x="18" y="246" font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(255,255,255,0.62)">temporal patterns</text>
+  </g>
+
+  <!-- Fusion & risk -->
+  <g transform="translate(900 156)">
+    <rect x="0" y="0" width="170" height="120" rx="18" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" />
+    <text x="18" y="38" font-family="ui-sans-serif, system-ui" font-size="14" fill="rgba(255,255,255,0.82)">Fusion</text>
+    <text x="18" y="62" font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(255,255,255,0.62)">combine signals</text>
+    <rect x="18" y="76" width="134" height="30" rx="12" fill="url(#acc)" opacity="0.85" />
+    <text x="85" y="96" text-anchor="middle" font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(0,0,0,0.78)">Unified vector</text>
+
+    <rect x="0" y="146" width="170" height="96" rx="18" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" />
+    <text x="18" y="180" font-family="ui-sans-serif, system-ui" font-size="14" fill="rgba(255,255,255,0.82)">Risk classifier</text>
+    <text x="18" y="204" font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(255,255,255,0.62)">low • moderate • high</text>
+  </g>
+
+  <!-- Outputs -->
+  <g transform="translate(320 380)">
+    <rect x="0" y="0" width="750" height="96" rx="18" fill="rgba(0,0,0,0.18)" stroke="rgba(255,255,255,0.12)" />
+    <text x="18" y="34" font-family="ui-sans-serif, system-ui" font-size="14" fill="rgba(255,255,255,0.82)">System outputs</text>
+    <text x="18" y="58" font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(255,255,255,0.62)">dashboard • chatbot support • digital twin monitoring • trend visualization</text>
+
+    <g transform="translate(420 22)">
+      <rect x="0" y="0" width="150" height="52" rx="14" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.10)" />
+      <text x="18" y="32" font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(255,255,255,0.74)">Dashboard</text>
+    </g>
+    <g transform="translate(580 22)">
+      <rect x="0" y="0" width="150" height="52" rx="14" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.10)" />
+      <text x="18" y="32" font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(255,255,255,0.74)">Chatbot</text>
+    </g>
+  </g>
+
+  <!-- connectors -->
+  <path d="M264 160H310" stroke="rgba(255,255,255,0.28)" stroke-width="3" marker-end="url(#arrow)" />
+  <path d="M264 256H310" stroke="rgba(255,255,255,0.28)" stroke-width="3" marker-end="url(#arrow)" />
+  <path d="M264 352H310" stroke="rgba(255,255,255,0.28)" stroke-width="3" marker-end="url(#arrow)" />
+
+  <path d="M560 250H606" stroke="rgba(255,255,255,0.28)" stroke-width="3" marker-end="url(#arrow)" />
+  <path d="M856 250H890" stroke="rgba(255,255,255,0.28)" stroke-width="3" marker-end="url(#arrow)" />
+
+  <path d="M985 302V372" stroke="rgba(255,255,255,0.26)" stroke-width="3" marker-end="url(#arrow)" />
+</svg>
